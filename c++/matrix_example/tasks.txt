@@ -1,0 +1,32 @@
+Add support for basic operators (+, -, *, (r, c) etc) in Matrix<T> class. 
+Matix<T> class is added as a header only C++ library.
+
+Build instructions
+   1. Create a folder named 'build' in examples folder
+   2. Open a cmd terminal cd into examples/build folder
+   3. Run cmake .. in cmd terminal
+   4. Open examples/build/examples.sln using 'Visual Studio'
+   5. Set example1 as startup project
+
+Task 1: 
+Add support for element access operator matrix(row, col). Basic code skeleton exists in examples/matrix/matrix.h file.
+Set startup project to access_elements_test. Make sure the test passes.
+
+Task 2:
+Add support for serialization and deserialization operators.
+Set startup project to serialize_deserialize_test. Make sure the test passes.
+
+Task 3:
+Add support for matrix addition. Set startup project to add_test. Make sure the test passes.
+
+Task 4:
+Add support for matrix multiplication. Set startup project to multiply_test. Test need to pass.
+
+Task 5:
+Add support for matrix transpose. Set startup project to transpose_test. Test need to pass.
+
+Task 6:
+Add support for matrix subtraction operator. Add unit tests for subtraction.
+
+Task 7.
+Add support for matrix scalar multiplication operator. Add unit tests.
