@@ -52,7 +52,7 @@ T& Matrix<T>::operator()(const size_t r, const size_t c) {
 
 template <typename T>
 std::ostream& operator<<(std::ostream& out, const Matrix<T>& mat) {
-	for (int i = 0; i < mat._data.size(); i++) {
+	for (size_t i = 0; i < mat._data.size(); i++) {
 		if (i % (mat._columns) == 0 && i != 0) {
 			out << "\n";
 		} else if (i != 0) {
@@ -111,8 +111,8 @@ Matrix<T> Matrix<T>::operator*(const T s) const {
 template <typename T>
 Matrix<T> Matrix<T>::transpose() const {
 	Matrix<T> out(_columns, _rows);
-	for (int r = 0; r < _rows; r++) {
-		for (int c = 0; c < _columns; c++) {
+	for (size_t r = 0; r < _rows; r++) {
+		for (size_t c = 0; c < _columns; c++) {
 			out(c, r) = _data[rowColumnToIndex(r, c)];
 		}
 	}
