@@ -31,3 +31,9 @@ target_link_libraries(transpose_test glog::glog GTest::gtest GTest::gtest_main m
 
 add_executable(multiply_test multiply_test.cpp)
 target_link_libraries(multiply_test glog::glog GTest::gtest GTest::gtest_main matrix)
+
+add_executable(symmetric_matrix_test symmetric_matrix_test.cpp)
+target_link_libraries(symmetric_matrix_test glog::glog GTest::gtest GTest::gtest_main matrix)
+
+add_executable(inplace_tranpose_test inplace_transpose_test.cpp)
+target_link_libraries(inplace_tranpose_test glog::glog GTest::gtest GTest::gtest_main matrix)
