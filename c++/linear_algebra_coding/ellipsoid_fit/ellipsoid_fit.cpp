@@ -24,6 +24,8 @@ Matrix3d generateMatrixSqrt(const Matrix3d& A) {
 	const EigenSolver<Matrix<double, 3, 3>> solver(A, true);
 	const Matrix3d P = solver.eigenvectors().real();
 	const Matrix3d D = solver.eigenvalues().real().cwiseSqrt().asDiagonal();
+	std::cout << "DIAG -> " << D << "\n";
+	std::cout << solver.eigenvalues().real() << "\n";
 	return P * D * P.transpose();
 }
 
@@ -65,7 +67,10 @@ void ellipsoidFit(const std::vector<Vector3f>& mag_data, Matrix3d& M, Vector3d& 
 	EigenSolver<Matrix<double, 6, 6>> solver(E);
 	Index i;
 	solver.eigenvalues().real().maxCoeff(&i);
-	const Matrix<double,6,1> V1 = solver.eigenvectors().real().col(i);
+	Matrix<double,6,1> V1 = solver.eigenvectors().real().col(i);
+	if (V1[0] < 0.0) {
+		V1 *= -1;
+	}
 	const Matrix<double, 4, 1> V2 = -S22.inverse() * S12.transpose() * V1;
 
 	// Creates A, M, and origin matrices/vectors
@@ -76,6 +81,8 @@ void ellipsoidFit(const std::vector<Vector3f>& mag_data, Matrix3d& M, Vector3d& 
 	origin = -A.inverse() * Vector3d(V2(0), V2(1), V2(2));
 	const double r = std::sqrt(origin.transpose() * A * origin - V2(3)); // Scales M to r to be
 	M = generateMatrixSqrt(A) / r;
+	std::cout << "A -> " << A << "\n";
+	std::cout << "R -> " << r << "\n";
 }
 
 int main(int argc, char** argv) {
